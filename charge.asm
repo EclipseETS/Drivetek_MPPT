@@ -191,7 +191,7 @@ CheckMSB
 			goto	Twocomplement
 
 Checkdelta
-   		movlw 	0x03       		    ; max. allowed difference ca. 0.6V
+   		movlw 	0x06       		    ; max. allowed difference ca. 0.6V
 		movwf	Temp2
 		movfw	Temp1
    		subwf 	Temp2,w				;w=Temp2-Temp1 (max. allowed difference-real difference)				

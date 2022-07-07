@@ -23,9 +23,9 @@
 ;                                                                     *
 ;**********************************************************************
 
-ConstVMode	
-		call	PWMoff
-		call	wait20ms
+;ConstVMode	
+;		call	PWMoff
+;		call	wait20ms
 Wait4Connect1								;is bat. still connected?
 		call	UpdateCAN
 		clrwdt								; reset watchdog
@@ -59,10 +59,10 @@ CheckLsb21
 			goto	ConstVMode2
 
 NoBatConnected
+		call 	PWMoff
 		bsf		REDLED
 		bsf		NOC
 		bcf		BVLR
-		call 	PWMoff
 
 DeCharge1
 		call	wait20ms		; wait for capacitor to be discharged
@@ -95,6 +95,7 @@ ConstVMode2
 		call	DecDuty				; decrement duty cycle
 		call	PWMon
 		call	wait20ms        		; to obtain an approximate tracking frequency of 50Hz
+		call	wait20ms        		; to obtain an approximate tracking frequency of 50Hz
 		
 		call 	UpdateCAN				
 		call	GetFilteredUin
@@ -112,11 +113,16 @@ CV_MeasUout	call	GetFilteredUout			; test if battery reached full level
 		call	UpdateCAN
 
 
-		jmpFltL UOFH,MAXUOH,MPPTtracking	; jmp, if output voltage within limits
+		jmpFltL UOFH,MAXUOH,UpdateDuty	; jmp, if output voltage within limits
 		jmpFgtL UOFH,MAXUOH,CheckBatCon		; go on, if ouput voltage exceeded
-		jmpFleL	UOFL,MAXUOL,MPPTtracking	; consider L-Byte
+		jmpFleL	UOFL,MAXUOL,UpdateDuty	; consider L-Byte
 		goto	Wait4Connect1
 CheckBatCon
 		goto	Wait4Connect1
+		
+UpdateDuty	movlw	INITDUTY	; PWM2 duty cycle (Sm')
+		movwf	DUTY2_H		; init duty variable
+		movwf	CCPR2L
+		call	MPPTtracking
 	
 ;**********************************************************************
