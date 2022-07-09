@@ -101,10 +101,10 @@ MeasIin		call	GetFilteredIin			; Measure the current input current
 
 MeasUout	call	GetFilteredUout			; test if battery reached full level
 		jmpFltL UOFH,MAXUOH,MeasTemp		; jmp, if output voltage within limits
-		jmpFgtL UOFH,MAXUOH,ConstVMode		; go on, if ouput voltage exceeded
+		jmpFgtL UOFH,MAXUOH,Wait4Connect1		; go on, if ouput voltage exceeded
 		jmpFleL	UOFL,MAXUOL,MeasTemp		; consider L-Byte
 		
-		goto	ConstVMode
+		goto	Wait4Connect1
 
 MeasTemp	
 		call	OverTemp					;Check Temp.

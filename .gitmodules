@@ -1,0 +1,3 @@
+[submodule "Drivetek-MPPT-HEX"]
+	path = Drivetek-MPPT-HEX
+	url = ../Drivetek-MPPT-HEX.git

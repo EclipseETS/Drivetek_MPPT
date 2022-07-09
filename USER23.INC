@@ -59,8 +59,14 @@
 ;UKSC new values (JB)
 ; (target voltage) / ( mV per Count) = number of counts needed 
 ;( 148 volts / 208.79mV per Count) = 709 Counts = 0x02c4
+;#define MAXUOH      0x02
+;#define MAXUOL      0xc4
+
+;Eclipse X
+; (target voltage) / ( mV per Count) = number of counts needed 
+;( 135 volts / 208.79mV per Count) = 646 Counts = 0x0286
 #define MAXUOH      0x02
-#define MAXUOL      0xc4
+#define MAXUOL      0x86
 
 
 ;**********************************************************************
@@ -73,9 +79,15 @@
 ;UKSC new values (JB)
 ;(target Voltage) / (mV per Count) = number of counts needed
 ;(37.79 votls) / ( 150.49 mV / per count) = 251 = 0x00FB
-
+;#define MINUINH 0x00
+;#define MINUINH 0xFB
+			
+;Eclipse X
+;(target Voltage) / (mV per Count) = number of counts needed
+;(26 volts) / ( 150.49 mV / per count) = 173 = 0x0159
 #define MINUINH 0x00
-#define MINUINL	0xFB
+#define MINUINL	0xAD
+					
 ;**********************************************************************
 ;Min Output Voltage, used for Precharge
 ;**********************************************************************
@@ -85,8 +97,15 @@
 ;UKSC new values (JB)
 ;(target Voltage) / (mV per Count) = number of counts needed
 ;(90 volts) / (208.79 mV perCount) = 433  = 0x01b1
+;#define MINUBATH   0x01
+;#define MINUBATL   0xb1
+	
+;Eclipse X
+;(target Voltage) / (mV per Count) = number of counts needed
+;(80 volts) / (208.79 mV perCount) = 383  = 0x017f
 #define MINUBATH   0x01
-#define MINUBATL   0xb1
+#define MINUBATL   0x7F
+					
 ;**********************************************************************
 ;   border ot discontinuous mode 
 ;   ON-Values have to be greater than OFF-Values
@@ -115,8 +134,8 @@
 ;UKSC new values (JB)
 
 ;(target Voltage) / (mV per Count) = number of counts needed
-;( 69.37 volts) / (150.49 mV perCount) = 461 = 0x01CD
+;( 52.97 volts) / (150.49 mV perCount) = 461 = 0x01CD
 
 #define UmppH 0x01      
-#define UmppL 0xCD	                                                                                                                                                                                                                                                                                                            
+#define UmppL 0x60	                                                                                                                                                                                                                                                                                                            
 
